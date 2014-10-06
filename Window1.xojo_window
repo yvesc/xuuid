@@ -9,7 +9,7 @@ Begin Window Window1
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   400
+   Height          =   64
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window Window1
    Resizeable      =   True
    Title           =   "Untitled"
    Visible         =   True
-   Width           =   600
+   Width           =   198
    Begin PushButton PushButton1
       AutoDeactivate  =   True
       Bold            =   False
@@ -34,7 +34,7 @@ Begin Window Window1
       Caption         =   "Button"
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   36
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -55,54 +55,7 @@ Begin Window Window1
       Top             =   14
       Underline       =   False
       Visible         =   True
-      Width           =   80
-   End
-   Begin TextArea TextArea1
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
-      Bold            =   False
-      Border          =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   332
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   True
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   48
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   560
+      Width           =   158
    End
 End
 #tag EndWindow
@@ -110,36 +63,43 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Function CalculateID() As String
+		  Dim S1(), valueitems(), uniqueID As String
+		  Dim Serial, Name, Vendor, OS_UUID As String
+		  Dim valueAtLabel As new Dictionary
+		  
+		  uniqueID = ""
+		  
 		  #If TargetMacOS Then
-		    Return  SystemInformationMBS.MachineID   //CalculateSystemCode
+		    // Calculate ID for Mac OS X
+		    // ...
 		    
 		  #elseIf TargetWin32 Then
-		    
-		    Dim CPUModel as String = "CPU" //SystemInformationMBS.CPUBrandString.Trim
-		    Dim WinKey as String = "WIN" //SystemInformationMBS.WinProductKey.Trim
-		    
+		    // Calculate ID for Win32 
 		    Dim s as New shell
 		    
-		    s.Execute("wmic path win32_computersystemproduct get uuid")
+		    //s.Execute("wmic path win32_computersystemproduct get uuid")
+		    //s.Execute("wmic bios get serialnumber")
 		    s.Execute("wmic csproduct list /format")
-		    s.Execute("wmic bios get serialnumber")
-		    Dim s1() as String = s.Result.Split(EndOfLine)
 		    
-		    Dim BiosSerial as String
-		    Try
-		      BiosSerial= s1(1).Trim
-		      System.DebugLog("Bios Serial from Shell: "+BiosSerial)
-		    Catch
-		      BiosSerial = ""
-		    End Try
+		    s1() = s.Result.Trim.Split(EndOfLine)
+		    
+		    for index As Integer = 0 to s1.Ubound - 1 
+		      valueitems() = s1(index).Split("=")
+		      valueAtLabel.Value (valueitems(0)) = valueitems(1)
+		      
+		    next
+		    
+		    uniqueID = valueAtLabel.Value("Vendor") + valueAtLabel.Value("Name") + valueAtLabel.Value("IdentifyingNumber") + valueAtLabel.Value("UUID")
 		    
 		    Dim Salt as String = "9878235359809809"
-		    Dim n as string = System.EnvironmentVariable("COMPUTERNAME").Trim
-		    Dim m as string = MD5(Salt+CPUModel+WinKey+n+BiosSerial).Trim
-		    Return m
+		    uniqueID = EncodeBase64(MD5(Salt + uniqueID))
 		    
+		    Return uniqueID
 		    
-		    
+		  #elseIf TargetLinux Then
+		    // Calculate ID for Linux System
+		    // Based on ioreg or anything else
+		    // ...
 		  #endif
 		End Function
 	#tag EndMethod
@@ -156,17 +116,9 @@ End
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  Dim i As Integer
-		  Dim mactxt As String
 		  
-		  For i = 0 to System.NetworkInterfaceCount - 1
-		    mactxt = System.GetNetworkInterface(i).MACAddress
-		    TextArea1.AppendText(Str(i) + " = " + mactxt + chr(10) + chr(13))
-		    
-		    
-		  Next
 		  
-		  TextArea1.AppendText(EncodeBase64(CalculateID))
+		  MsgBox(CalculateID)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
