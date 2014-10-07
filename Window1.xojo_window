@@ -14,24 +14,24 @@ Begin Window Window1
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
-   MaximizeButton  =   True
+   MaximizeButton  =   False
    MaxWidth        =   32000
-   MenuBar         =   126691327
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
    Placement       =   0
-   Resizeable      =   True
-   Title           =   "Untitled"
+   Resizeable      =   False
+   Title           =   "XUUID"
    Visible         =   True
    Width           =   198
-   Begin PushButton PushButton1
+   Begin PushButton PushButtonGenerateID
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Button"
+      Caption         =   "Generate UID"
       Default         =   False
       Enabled         =   True
       Height          =   36
@@ -74,7 +74,7 @@ End
 		    // ...
 		    
 		  #elseIf TargetWin32 Then
-		    // Calculate ID for Win32 
+		    // Calculate ID for Win32
 		    Dim s as New shell
 		    
 		    //s.Execute("wmic path win32_computersystemproduct get uuid")
@@ -83,7 +83,7 @@ End
 		    
 		    s1() = s.Result.Trim.Split(EndOfLine)
 		    
-		    for index As Integer = 0 to s1.Ubound - 1 
+		    for index As Integer = 0 to s1.Ubound - 1
 		      valueitems() = s1(index).Split("=")
 		      valueAtLabel.Value (valueitems(0)) = valueitems(1)
 		      
@@ -92,7 +92,11 @@ End
 		    uniqueID = valueAtLabel.Value("Vendor") + valueAtLabel.Value("Name") + valueAtLabel.Value("IdentifyingNumber") + valueAtLabel.Value("UUID")
 		    
 		    Dim Salt as String = "9878235359809809"
-		    uniqueID = EncodeBase64(MD5(Salt + uniqueID))
+		    
+		    // The following Encodage is good enough but not really user friendly :
+		    // uniqueID = EncodeBase64(MD5(Salt + uniqueID))
+		    // So I propose to use the EncodeHex method...
+		    uniqueID = EncodeHex(MD5(Salt + uniqueID))
 		    
 		    Return uniqueID
 		    
@@ -100,6 +104,7 @@ End
 		    // Calculate ID for Linux System
 		    // Based on ioreg or anything else
 		    // ...
+		    
 		  #endif
 		End Function
 	#tag EndMethod
@@ -113,7 +118,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events PushButtonGenerateID
 	#tag Event
 		Sub Action()
 		  
