@@ -99,7 +99,7 @@ End
 
 	#tag Method, Flags = &h0
 		Function getHostID() As String
-		  // Calculate the Host Unique IDentifier (HUID) 
+		  // Calculate the Host Unique IDentifier (HUID)
 		  Dim S1(), valueitems(), uniqueID As String
 		  Dim valueAtLabel As new Dictionary
 		  
@@ -117,14 +117,17 @@ End
 		    //s.Execute("wmic bios get serialnumber")
 		    s.Execute("wmic csproduct list /format")
 		    
+		    // Trim and split the shell result to an array...
 		    s1() = s.Result.Trim.Split(EndOfLine)
 		    
+		    // Then extract data to a Dictionary object...
 		    for index As Integer = 0 to s1.Ubound - 1
 		      valueitems() = s1(index).Split("=")
 		      valueAtLabel.Value (valueitems(0)) = valueitems(1)
 		      
 		    next
 		    
+		    // ...now, we can extract the uid string...
 		    uniqueID = valueAtLabel.Value("Vendor") + "." + valueAtLabel.Value("Name") + "." + valueAtLabel.Value("IdentifyingNumber") + "." + valueAtLabel.Value("UUID")
 		    
 		    
@@ -135,6 +138,7 @@ End
 		    
 		  #endif
 		  
+		  // That's all... We can return the fina value!
 		  return uniqueID
 		End Function
 	#tag EndMethod

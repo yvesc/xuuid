@@ -22,6 +22,13 @@ Inherits Application
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="ApplicationIdentifier"
+			Group="Behavior"
+			InitialValue="com.vaya.app.macad"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass
