@@ -63,8 +63,44 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Function CalculateID() As String
+		  
+		  return (getHexMD5ID(getHostID()))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getAppID() As String
+		  Dim value As String
+		  
+		  value = app.ApplicationIdentifier
+		  
+		  if value  <> "" then
+		    return value
+		    
+		  else
+		    return "default"
+		    
+		  end
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getHexMD5ID(uniqueID As String) As String
+		  Dim Salt as String = "9878235359809809"
+		  
+		  // The following Encodage is good enough but not really user friendly :
+		  // uniqueID = EncodeBase64(MD5(Salt + uniqueID))
+		  // So I propose to use the EncodeHex method...
+		  uniqueID = EncodeHex(MD5(Salt + uniqueID))
+		  
+		  Return uniqueID
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getHostID() As String
+		  // Calculate the Host Unique IDentifier (HUID) 
 		  Dim S1(), valueitems(), uniqueID As String
-		  Dim Serial, Name, Vendor, OS_UUID As String
 		  Dim valueAtLabel As new Dictionary
 		  
 		  uniqueID = ""
@@ -89,16 +125,8 @@ End
 		      
 		    next
 		    
-		    uniqueID = valueAtLabel.Value("Vendor") + valueAtLabel.Value("Name") + valueAtLabel.Value("IdentifyingNumber") + valueAtLabel.Value("UUID")
+		    uniqueID = valueAtLabel.Value("Vendor") + "." + valueAtLabel.Value("Name") + "." + valueAtLabel.Value("IdentifyingNumber") + "." + valueAtLabel.Value("UUID")
 		    
-		    Dim Salt as String = "9878235359809809"
-		    
-		    // The following Encodage is good enough but not really user friendly :
-		    // uniqueID = EncodeBase64(MD5(Salt + uniqueID))
-		    // So I propose to use the EncodeHex method...
-		    uniqueID = EncodeHex(MD5(Salt + uniqueID))
-		    
-		    Return uniqueID
 		    
 		  #elseIf TargetLinux Then
 		    // Calculate ID for Linux System
@@ -106,6 +134,8 @@ End
 		    // ...
 		    
 		  #endif
+		  
+		  return uniqueID
 		End Function
 	#tag EndMethod
 
