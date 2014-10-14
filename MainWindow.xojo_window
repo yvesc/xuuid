@@ -86,7 +86,7 @@ End
 
 	#tag Method, Flags = &h0
 		Function getHexMD5ID(uniqueID As String) As String
-		  Dim Salt as String = "9878235359809809"
+		  Dim Salt as String = "156169876214887"
 		  
 		  // The following Encodage is good enough but not really user friendly :
 		  // uniqueID = EncodeBase64(MD5(Salt + uniqueID))
