@@ -23,7 +23,9 @@ TODO
 
 ToDo
 ----
-* Add Application name in UID.
-* Change salt value.
-* Change the code hierarchy from simple test mode to package/module mode.
-* Usage.
+* [ ] Add Application name in UID.
+* [ ] Change salt value.
+* [ ] Change the code hierarchy from simple test mode to package/module mode.
+* [ ] User Manual.
+ 
+
