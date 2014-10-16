@@ -1,8 +1,12 @@
 Type=Desktop
 RBProjectVersion=2014.021
 MinIDEVersion=20070100
+Interface=KeyManager;Model/KeyManager.xojo_code;&h62AE87FF;&h4A265FFF;false
+Class=KeyManagerClient;Model/KeyManagerClient.xojo_code;&h2D015FFF;&h4A265FFF;false
+Class=KeyManagerServer;Model/KeyManagerServer.xojo_code;&h71B2EFFF;&h4A265FFF;false
 Class=App;App.xojo_code;&h4F7AFFF;&h0;false
 Window=MainWindow;MainWindow.xojo_window;&h60FBF7FF;&h0;false
+Folder=Model;Model;&h4A265FFF;&h0;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h5DA1FFFF;&h0;false
 DefaultWindow=MainWindow
 MajorVersion=1

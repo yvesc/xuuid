@@ -9,7 +9,7 @@ Begin Window MainWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   64
+   Height          =   460
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window MainWindow
    Resizeable      =   False
    Title           =   "XUUID"
    Visible         =   True
-   Width           =   198
+   Width           =   690
    Begin PushButton PushButtonGenerateID
       AutoDeactivate  =   True
       Bold            =   False
@@ -34,12 +34,12 @@ Begin Window MainWindow
       Caption         =   "Generate UID"
       Default         =   False
       Enabled         =   True
-      Height          =   36
+      Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   512
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,10 +52,211 @@ Begin Window MainWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   14
+      Top             =   230
       Underline       =   False
       Visible         =   True
       Width           =   158
+   End
+   Begin TextArea TextArea_UIDDisplay
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   True
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   96
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   14
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   650
+   End
+   Begin TextField TextFieldLicence
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   106
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   264
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   564
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Verify"
+      Default         =   False
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   512
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   298
+      Underline       =   False
+      Visible         =   True
+      Width           =   158
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      Text            =   "Licence key :"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   265
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin TextArea TextArea_UIDDisplayCrypt
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   True
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   96
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   122
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   650
    End
 End
 #tag EndWindow
@@ -64,7 +265,7 @@ End
 	#tag Method, Flags = &h0
 		Function CalculateID() As String
 		  
-		  return (getHexMD5ID(getHostID()))
+		  return (getAppID + "." + getHostID())
 		End Function
 	#tag EndMethod
 
@@ -128,7 +329,7 @@ End
 		    next
 		    
 		    // ...now, we can extract the uid string...
-		    uniqueID = valueAtLabel.Value("Vendor") + "." + valueAtLabel.Value("Name") + "." + valueAtLabel.Value("IdentifyingNumber") + "." + valueAtLabel.Value("UUID")
+		    uniqueID = valueAtLabel.Value("Vendor").Trim() + "." + valueAtLabel.Value("Name").Trim() + "." + valueAtLabel.Value("IdentifyingNumber").Trim() + "." + valueAtLabel.Value("UUID").Trim()
 		    
 		    
 		  #elseIf TargetLinux Then
@@ -155,9 +356,48 @@ End
 #tag Events PushButtonGenerateID
 	#tag Event
 		Sub Action()
+		  Dim key As KeyManagerClient = KeyManagerClient.getInstance
+		  Dim ckey As KeyManagerServer = KeyManagerServer.getInstance
+		  Dim uidtext, pub, priv As String
+		  Dim message As MemoryBlock
 		  
+		  pub = ckey.getPublicKey
+		  //priv = 
+		  //uidtext = key.getPublicKey + "." + CalculateID
+		  uidtext = CalculateID
 		  
-		  MsgBox(CalculateID)
+		  TextArea_UIDDisplay.Text = uidtext
+		  
+		  message = uidtext
+		  
+		  If Crypto.RSAVerifyKey(pub) Then
+		    Dim mbo As MemoryBlock = Crypto.RSAEncrypt(message, pub)
+		    //Dim mbo As MemoryBlock = Crypto.RSAVerifySignature(, pub)
+		    TextArea_UIDDisplayCrypt.Text = EncodeHex(mbo)
+		    
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  // Licence key  verification
+		  Dim content, pubkey As String
+		  Dim ckey As KeyManagerServer = KeyManagerServer.getInstance
+		  
+		  content = TextFieldLicence.Text
+		  pubkey = ckey.getPublicKey
+		  
+		  If Crypto.RSAVerifySignature(CalculateID, content, pubkey) Then
+		    MsgBox("Licence OK")
+		    
+		  Else
+		    MsgBox("Invalid Licence key")
+		    
+		  End If
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
