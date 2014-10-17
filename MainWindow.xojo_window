@@ -146,7 +146,7 @@ Begin Window MainWindow
       Visible         =   True
       Width           =   564
    End
-   Begin PushButton PushButton1
+   Begin PushButton PushButtonVerify
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -362,7 +362,7 @@ End
 		  Dim message As MemoryBlock
 		  
 		  pub = ckey.getPublicKey
-		  //priv = 
+		  //priv =
 		  //uidtext = key.getPublicKey + "." + CalculateID
 		  uidtext = CalculateID
 		  
@@ -380,17 +380,18 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events PushButton1
+#tag Events PushButtonVerify
 	#tag Event
 		Sub Action()
 		  // Licence key  verification
-		  Dim content, pubkey As String
+		  Dim content, pubkey, truemsg As String
 		  Dim ckey As KeyManagerServer = KeyManagerServer.getInstance
 		  
-		  content = TextFieldLicence.Text
+		  content = (DecodeHex(TextFieldLicence.Text))
 		  pubkey = ckey.getPublicKey
+		  truemsg = CalculateID.trim
 		  
-		  If Crypto.RSAVerifySignature(CalculateID, content, pubkey) Then
+		  If Crypto.RSAVerifySignature(truemsg, content, pubkey) Then
 		    MsgBox("Licence OK")
 		    
 		  Else
